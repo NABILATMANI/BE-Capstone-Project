@@ -20,9 +20,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',  # Django REST Framework
-
-    'social',  # Your app
+    'rest_framework',  # Ensure Django REST Framework is included
+    'social',  # Ensure your app is included here
 ]
 
 MIDDLEWARE = [
