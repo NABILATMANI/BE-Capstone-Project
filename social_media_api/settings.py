@@ -1,18 +1,18 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# Définition des chemins de base
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'your-default-secret-key')
+# Clé secrète (à remplacer en production par une clé sécurisée)
+SECRET_KEY = os.getenv('SECRET_KEY', 'votre-cle-secrete')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# Ne pas utiliser DEBUG=True en production
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.pythonanywhere.com']
 
-# Application definition
+# Définition des applications installées
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -20,10 +20,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',  # Ensure Django REST Framework is included
-    'social',  # Ensure your app is included here
+    'rest_framework',  # Django REST Framework
+    'social',  # Votre application
 ]
 
+# Middleware (ne modifiez rien ici sauf besoin spécifique)
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -34,6 +35,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# Configuration des URLs et WSGI
 ROOT_URLCONF = 'social_media_api.urls'
 
 TEMPLATES = [
@@ -54,7 +56,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'social_media_api.wsgi.application'
 
-# Database
+# Base de données (SQLite par défaut)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -62,7 +64,7 @@ DATABASES = {
     }
 }
 
-# Password validation
+# Configuration de l'authentification
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -78,44 +80,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# Internationalization
-LANGUAGE_CODE = 'en-us'
-
+# Paramètres internationaux
+LANGUAGE_CODE = 'fr-fr'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
+# Paramètres des fichiers statiques
 STATIC_URL = '/static/'
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
+# Configuration par défaut du champ AutoField
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# Django Rest Framework settings
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-    ],
-}
-
-# Production settings for PythonAnywhere
-if os.getenv('PYTHONANYWHERE_ENV') == 'production':
-    DEBUG = False
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME'),
-            'USER': os.getenv('DB_USER'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST'),
-            'PORT': os.getenv('DB_PORT', '5432'),
-        }
-    }
