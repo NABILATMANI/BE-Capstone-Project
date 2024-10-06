@@ -1,0 +1,5 @@
+Django>=4.0,<5.0
+djangorestframework>=3.12.4
+gunicorn>=20.0.4  # For deployment on PythonAnywhere
+Pillow>=8.0.0     # For handling images (e.g., profile pictures)
+psycopg2>=2.9.0   # PostgreSQL driver (if using Postgres in production)
