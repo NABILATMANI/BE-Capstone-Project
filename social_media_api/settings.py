@@ -21,7 +21,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',  # Django REST Framework
-    'social',  # Custom app (replace with your app name)
+
+    'social',  # Your app
 ]
 
 MIDDLEWARE = [
